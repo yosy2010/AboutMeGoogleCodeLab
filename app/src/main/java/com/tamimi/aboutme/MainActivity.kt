@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val nickName = nick_namr_edit_text.text
 
         // update nickname with entered name
-        findViewById<View>(R.id.done_btn).setOnClickListener {  view ->
+        findViewById<Button>(R.id.done_btn).setOnClickListener {  view ->
                     // check if there was text entered
                     if (nickName.isNotEmpty()) {
 
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // if the user click on his nickname again we want to put the edit text and the done btn back again so he can edit his name
-        findViewById<View>(R.id.nick_name_text_view).setOnClickListener {
+        findViewById<TextView>(R.id.nick_name_text_view).setOnClickListener {
 
             // show the btn and text edit and hide the nickname text view and request focus for text edit and show the keyboard
                         makeEditable()
@@ -45,12 +47,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun makeEditable() {
-        findViewById<View>(R.id.nick_namr_edit_text).visibility = View.VISIBLE
-        findViewById<View>(R.id.done_btn).visibility = View.VISIBLE
-        findViewById<View>(R.id.nick_name_text_view).visibility = View.GONE
+        findViewById<EditText>(R.id.nick_namr_edit_text).visibility = View.VISIBLE
+        findViewById<Button>(R.id.done_btn).visibility = View.VISIBLE
+        findViewById<TextView>(R.id.nick_name_text_view).visibility = View.GONE
 
         // request focus for the edit text
-        findViewById<View>(R.id.nick_namr_edit_text).requestFocus()
+        findViewById<EditText>(R.id.nick_namr_edit_text).requestFocus()
         showKeyboard()
     }
 
@@ -65,10 +67,10 @@ class MainActivity : AppCompatActivity() {
         nickNameTextView.visibility = View.VISIBLE
 
         // make the button disappear
-        findViewById<View>(R.id.done_btn).visibility = View.GONE
+        findViewById<Button>(R.id.done_btn).visibility = View.GONE
 
         // and make the text edit also disappear
-        findViewById<View>(R.id.nick_namr_edit_text).visibility = View.GONE
+        findViewById<EditText>(R.id.nick_namr_edit_text).visibility = View.GONE
 
         // and hide the keyboard
         hideKeyboard(view)

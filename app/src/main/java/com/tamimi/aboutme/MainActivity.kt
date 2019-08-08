@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,50 +22,53 @@ class MainActivity : AppCompatActivity() {
         val nickName = nick_namr_edit_text.text
 
         // update nickname with entered name
-        done_btn.setOnClickListener { view ->
-            // check if there was text entered
-            if (nickName.isNotEmpty()) {
+        findViewById<View>(R.id.done_btn).setOnClickListener {  view ->
+                    // check if there was text entered
+                    if (nickName.isNotEmpty()) {
 
-                // update the nick name
-                updateNickName(nickName, view)
-            } else {
+                        // update the nick name
+                        updateNickName(nickName, view)
+                    } else {
 
-                // if there was no text entered then show a toast
-                Toast.makeText(this, "Please enter your nickname", Toast.LENGTH_SHORT).show()
-            }
+                        // if there was no text entered then show a toast
+                        Toast.makeText(this, "Please enter your nickname", Toast.LENGTH_SHORT).show()
+                    }
         }
 
         // if the user click on his nickname again we want to put the edit text and the done btn back again so he can edit his name
-        nick_name_text_view.setOnClickListener {
+        findViewById<View>(R.id.nick_name_text_view).setOnClickListener {
 
             // show the btn and text edit and hide the nickname text view and request focus for text edit and show the keyboard
-            makeEditable()
-
+                        makeEditable()
         }
+
     }
 
     private fun makeEditable() {
-        nick_namr_edit_text.visibility = View.VISIBLE
-        done_btn.visibility = View.VISIBLE
-        nick_name_text_view.visibility = View.GONE
+        findViewById<View>(R.id.nick_namr_edit_text).visibility = View.VISIBLE
+        findViewById<View>(R.id.done_btn).visibility = View.VISIBLE
+        findViewById<View>(R.id.nick_name_text_view).visibility = View.GONE
 
         // request focus for the edit text
-        nick_namr_edit_text.requestFocus()
+        findViewById<View>(R.id.nick_namr_edit_text).requestFocus()
         showKeyboard()
     }
 
     private fun updateNickName(nickName: Editable?, view: View) {
+
+        val nickNameTextView = findViewById<TextView>(R.id.nick_name_text_view)
+
         // if there is then show it in the nickname text edit
-        nick_name_text_view.text = nickName
+        nickNameTextView.text = nickName
 
         // show the text field of the nickname
-        nick_name_text_view.visibility = View.VISIBLE
+        nickNameTextView.visibility = View.VISIBLE
 
         // make the button disappear
-        done_btn.visibility = View.GONE
+        findViewById<View>(R.id.done_btn).visibility = View.GONE
 
         // and make the text edit also disappear
-        nick_namr_edit_text.visibility = View.GONE
+        findViewById<View>(R.id.nick_namr_edit_text).visibility = View.GONE
 
         // and hide the keyboard
         hideKeyboard(view)

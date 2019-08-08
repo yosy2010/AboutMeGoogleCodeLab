@@ -25,7 +25,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:id="@+id/nick_namr_edit_text"
+            android:id="@+id/nick_name_edit_text"
             style="@style/edit_text_style"
             android:hint="@string/what_is_your_nickname" />
 
